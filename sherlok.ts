@@ -1,12 +1,5 @@
-const dayOfWeek =`Saturday
-Sunday
-Monday
-Tuesday
-Wednesday
-Thursday
-Friday`
-
-const input =`Tuesday
+// https://quera.org/problemset/236442
+const inputString = `Tuesday
 53
 67
 32
@@ -36,30 +29,40 @@ const input =`Tuesday
 47
 97
 56
-62`
+62`;
 
-const converInputToArr =(input=>input.split('\n')) 
-const mainArr= converInputToArr(input) 
-const MaindayArr =converInputToArr(dayOfWeek)
-const arrNumbers = mainArr.slice(1).map((x)=>Number(x))
+const daysOfWeek = `Saturday
+Sunday
+Monday
+Tuesday
+Wednesday
+Thursday
+Friday`;
 
-const convertARR =()=>{
-   const arrIndex= MaindayArr.findIndex(x=> x===mainArr[0])
-    const newArr = arrNumbers.map((x,index)=>{
-        return {[MaindayArr[(arrIndex+index)%7]]:x}
-    })
-    return(newArr);
-}
+const converToArr = (input) => input.split('\n');
+const mainArr = converToArr(inputString);
+const daysArr = converToArr(daysOfWeek);
+const mainArrNumbers = mainArr.slice(1).map((x) => Number(x));
 
-const newArr1 = MaindayArr.map(element => {
-   const a = convertARR().filter((obj)=>{
-     return obj[element] 
-    })
-    const b=  a.map((x)=>Object.values(x)[0])
-    const c = [b].map((s)=>{
-      return  ((s.reduce((pre,cur)=>pre+cur,0)) / s.length).toString().split('.')[0]
-    })
-    return c
+const generateDaysWeekNumber = () => {
+  const dayIndex = daysArr.findIndex((x) => x === mainArr[0]);
+  return mainArrNumbers.map((x, index) => {
+    return { [daysArr[(dayIndex + index) % 7]]: x };
+  });
+};
+
+const generateAveDay = daysArr.map((day) => {
+  const arrOfObjects = generateDaysWeekNumber().filter((obj) => {
+    return obj[day];
+  });
+  const arrOfNumbers = arrOfObjects.map((x) => Object.values(x)[0]);
+  const ave = arrOfNumbers.reduce((pre, cur) => pre + cur, 0) / arrOfNumbers.length;
+  return [day, ave];
 });
 
-const ave = arrNumbers.reduce((pre,cur)=>pre+cur,0) 
+const result = generateAveDay
+  .sort((a, b) => a[1] - b[1])[0]
+  .toString()
+  .split('.')[0];
+
+console.log(result);
