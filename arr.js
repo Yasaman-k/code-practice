@@ -234,3 +234,8 @@ function names1() {
 // for (let fish in arr) {
 //   console.log(fish);
 // }
+
+const arr = [1, 2, 3, 5];
+arr[0] = arr[1];
+arr[1] = arr[0];
+console.log(arr);
