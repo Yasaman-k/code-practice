@@ -92,8 +92,6 @@
 // const removeArr = arr.splice(1, 2, 'hi');
 // console.log(arr, removeArr);
 const names = ['Alice', 'Bob', 'nemo', 'Charlie', 'David', 'Eve'];
-
-var t1 = performance.now();
 function findNimo() {
   let value = 'yasaman';
   switch (value) {
@@ -115,7 +113,7 @@ function findNimo() {
   }
 }
 //const x = names.includes('nemo');
-var t2 = performance.now();
+
 // findNimo();
 // console.log(t2 - t1);
 
@@ -174,7 +172,6 @@ function names1() {
 // let y = 2;
 // console.log(this.y, 'foot');
 
-const arr = [{ 2: 3 }, { 1: 'k' }, { 4: 5 }, { 3: 4 }];
 // arr.forEach(function (arr3) {
 //   console.log(arr);
 // });
@@ -206,11 +203,34 @@ const arr = [{ 2: 3 }, { 1: 'k' }, { 4: 5 }, { 3: 4 }];
 // );
 
 // console.log(4 ** 2);
-let x = ['hi'];
-x = x.concat(['good']);
+// let x = ['hi'];
+// x = x.concat(['good']);
 
-const o = { a: 0 };
-const y = Object.assign({}, { k: 2 }, o);
-console.log(y);
-// const z = structuredClone(o);
-// console.log(z);
+// const o = { a: 0 };
+// const y = Object.assign({}, { k: 2 }, o);
+// console.log(y);
+// // const z = structuredClone(o);
+// // console.log(z);
+
+// const xx = y.s || 'o';
+// console.log(xx);
+///
+// const arr = [];
+// arr[4] = 'hi';
+// console.log(arr[1]);
+//
+// const arr = [{ 2: 3 }, { 1: 'k' }, { 4: 5 }, { 3: 4 }];
+// const t1 = performance.now();
+// // for (let fish of arr) {
+// //   console.log(fish);
+// // }
+// arr.forEach((fish) => {
+//   console.log(fish);
+// });
+
+// const t2 = performance.now();
+// console.log(t2 - t1);
+
+// for (let fish in arr) {
+//   console.log(fish);
+// }
