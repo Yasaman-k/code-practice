@@ -235,7 +235,165 @@ function names1() {
 //   console.log(fish);
 // }
 
-const arr = [1, 2, 3, 5];
-arr[0] = arr[1];
-arr[1] = arr[0];
-console.log(arr);
+let arr = [{ active: true, cat: 0n }, { active: false, cat: null }, { chat: false }, { chat: true, cat: 'w' }];
+let obj = {};
+// arr = arr.filter((x) => (x.active === undefined || x.active === true) && x.chat === 3);
+// const x = '';
+// if (obj.state === undefined) {
+//   console.log('hi');
+// }
+arr = arr.filter((x) => !!x.cat);
+// let forDeletion = [2, 3, 5];
+// let arr = [1, 2, 3, 4, 5, 3];
+// arr = arr.filter((item) => !forDeletion.includes(item));
+
+// 2 parameters - arrays - no size limit
+// return true or false
+function isContainCommonItem(arr1, arr2) {
+  for (item1 of arr1) {
+    //  if (secondArr.includes(item)) return true;
+    for (let i = 0; i < arr2.length; i++) {
+      if (arr2[i] === item1) {
+        return true;
+      }
+    }
+  }
+  return false;
+}
+// time complexity: o(a*b)
+// space complexity: o(1)
+
+//HASH TABLE // SEARCH
+// arr2=> obj{
+//a:true
+//}
+// arr2[index]===obj.properties
+// what if pass number as argument?
+const mapArrayToObject = (arr) => {
+  let map = {};
+  arr.forEach((item, i) => {
+    if (!map[arr[i]]) {
+      map[item] = true;
+    }
+  });
+  return map;
+};
+
+const isContainCommonItem2 = (arr1, arr2) => {
+  // handle edge case
+  if (!Array.isArray(arr1)) {
+    throw new Error('First argument must be an array');
+  }
+
+  if (!Array.isArray(arr2)) {
+    throw new Error('Second argument must be an array');
+  }
+
+  if (arr1.length === 0) {
+    throw new Error('First array is empty');
+  }
+
+  if (arr2.length === 0) {
+    throw new Error('Second array is empty');
+  }
+  //modulrize
+  const map = mapArrayToObject(arr1);
+  // loop through first array and create object where properties === items in the array
+
+  //or return arr2.some((elemet) => map[elemet]);
+  //loop through second array and check if item in second array exists on created object
+  for (item of arr2) {
+    if (map[item]) {
+      return true;
+    }
+  }
+  return false;
+};
+// time: o(a+b)
+// space: o(a)
+
+const isContainCommonItem3 = (arr1, arr2) => {
+  return arr1.some((item) => arr2.includes(item));
+};
+
+// console.log(isContainCommonItem2([1, 2, []], [[]]));
+
+class HashTable {
+  constructor(size) {
+    this.table = new Array(size);
+    this.size = size;
+  }
+
+  hash(key) {
+    let total = 0;
+    for (let i = 0; i < key.length; i++) {
+      total += key.charCodeAt(i);
+    }
+    return total % this.size;
+  }
+
+  set(key, value) {
+    const index = this.hash(key);
+    this.table[index] = value;
+  }
+
+  get(key) {
+    const index = this.hash(key);
+    return this.table[index];
+  }
+
+  remove(key) {
+    const index = this.hash(key);
+    this.table[index] = undefined;
+  }
+
+  display() {
+    for (let i = 0; i < this.table.length; i++) {
+      if (this.table[i]) {
+        console.log('index:', i, this.table[i]);
+      }
+    }
+  }
+}
+
+const table = new HashTable(50);
+table.set('jadi', 'yasaman');
+table.set('jida', 'ali');
+// table.display();
+// table.set('age', 25);
+// table.display();
+// console.log(table.get('red'));
+// table.remove('yellow');
+// table.display();
+
+const testReducer = [1, 8, 3, 4];
+let t = testReducer.reduce((max, curr) => {
+  // console.log(pre, curr);
+  if (max > curr) {
+    return max;
+  } else {
+    return curr;
+  }
+}, 20);
+let x = testReducer.reduce((max, curr) => {
+  return max + curr;
+});
+// set
+const people = new Set();
+const people2 = new Set([1, 2, 3, 4]);
+people2.add([9]);
+const num = [1, 2, 3, 3, 3, 3];
+const numWithout = [...new Set(num)];
+
+// console.log(people2.has(3));
+const hasPairWithSum = () => {
+  for (item of [1, 2, 3]) {
+    console.log(item);
+
+    if (item === 1) {
+      return true;
+    }
+    console.log('sara');
+  }
+};
+hasPairWithSum();
