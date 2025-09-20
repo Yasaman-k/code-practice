@@ -1,0 +1,19 @@
+body {
+  font-family: system-ui, sans-serif;
+  margin: 20px;
+}
+
+.questiion {
+  background-color: #e4eaef;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.answer {
+  background-color: #30353b;
+  color: #fff9f1;
+  border-radius: 5px;
+  padding: 8px;
+}
