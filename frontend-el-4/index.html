@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="fa">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سیستم رزرو رستوران</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body dir="rtl">
+
+    <div class="header">
+        <div class="logo">
+            <img src="assets/logo.png" alt="logo" width="80px" height="80px">
+            <h1>رستوران گاسترونومیکا</h1>
+        </div>
+        <div class="actions">
+            <button onclick="openModal('reserveModal')">رزرو میز</button>
+            <button onclick="openModal('futureReserveModal')">رزرو میز برای آینده</button>
+            <button onclick="openModal('releaseModal')">آزاد کردن میز</button>
+        </div>
+    </div>
+
+    <!-- مدال‌ها -->
+    <!-- مدال رزرو میز -->
+    <div id="reserveModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('reserveModal')">&times;</span>
+            <h2>رزرو میز</h2>
+            <div class="input-group">
+                <label for="groupSize">تعداد نفرات:</label>
+                <input type="number" id="groupSize" min="1" />
+            </div>
+            <div class="input-group">
+                <label for="priority">اولویت بالا:</label>
+                <input type="checkbox" id="priority" />
+            </div>
+            <button onclick="reserve(); closeModal('reserveModal')">تأیید رزرو</button>
+        </div>
+    </div>
+
+    <!-- مدال رزرو میز برای آینده -->
+    <div id="futureReserveModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('futureReserveModal')">&times;</span>
+            <h2>رزرو میز برای آینده</h2>
+            <div class="input-group">
+                <label for="futureGroupSize">تعداد نفرات:</label>
+                <input type="number" id="futureGroupSize" min="1" />
+            </div>
+            <div class="input-group">
+                <label for="futureTime">زمان رزرو:</label>
+                <input type="datetime-local" id="futureTime" />
+            </div>
+            <div class="input-group">
+                <label for="futurePriority">اولویت بالا:</label>
+                <input type="checkbox" id="futurePriority" />
+            </div>
+            <button onclick="reserveTableForFuture(); closeModal('futureReserveModal')">تأیید رزرو آینده</button>
+        </div>
+    </div>
+
+    <!-- مدال آزاد کردن میز -->
+    <div id="releaseModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('releaseModal')">&times;</span>
+            <h2>آزاد کردن میز</h2>
+            <div class="input-group">
+                <label for="releaseReservationId">شناسه رزرو برای آزاد کردن میز:</label>
+                <input type="text" id="releaseReservationId" />
+            </div>
+            <button onclick="release(); closeModal('releaseModal')">آزاد کردن میز</button>
+        </div>
+    </div>
+
+    <h2>وضعیت میزها</h2>
+    <ul id="tableStatus"></ul> <!-- وضعیت میزها اینجا نمایش داده می‌شود -->
+
+    <h2>گزارش</h2>
+    <div class="log" id="log"></div> <!-- گزارشات اینجا نمایش داده می‌شود -->
+
+    <script src="script.js"></script>
+</body>
+
+</html>
